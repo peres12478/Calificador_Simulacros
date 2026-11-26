@@ -1,0 +1,59 @@
+CALIFICADOR DE SIMULACROS - VERSION CON EXPORTACION POR GRUPO Y COMPARACION INDIVIDUAL
+======================================================================================
+
+OBJETIVO
+  Calificar en lote las hojas PDF / imagenes de simulacros, obteniendo resultados
+  por area, grupo y numero de lista. Sesion 1: 120 preguntas. Sesion 2: 135.
+
+INSTALACION (solo la primera vez)
+  python -m pip install opencv-python numpy pymupdf pillow
+
+EJECUCION
+  Abre una terminal dentro de la carpeta "calificador" y escribe:
+  python calificador_simulacros.py
+  (En Windows tambien puedes intentar "py calificador_simulacros.py").
+
+CARPETAS
+  plantillas/         Contiene las plantillas PDF en blanco para grados 10 y 11
+                      (sesiones 1 y 2, YA INCLUIDAS).
+  claves/             Coloca la hoja clave de respuestas marcada por sesion:
+                      clave_sesion1.pdf y clave_sesion2.pdf.
+                      Tambien puedes cargar una clave desde la ventana.
+                      ATENCION: las claves respondidas NO vienen en este ZIP.
+  hojas_a_calificar/  Coloca aqui las hojas de los estudiantes (PDF o imagenes).
+                      Cada pagina de un PDF cuenta como una hoja distinta.
+
+COMO CALIFICAR
+  1. Selecciona Sesion 1 o Sesion 2.
+  2. Carga la clave de esa sesion.
+  3. Coloca tus hojas en "hojas_a_calificar".
+  4. Pulsa "hojas_a_calificar" y luego "Calificar".
+  5. Revisa los resultados de cada estudiante.
+
+NOVEDADES
+  - La tabla muestra N.o lista, Grupo y "Comparar respuestas" en cada fila.
+    Haz UN CLIC en "Comparar respuestas" de una hoja concreta para revisar
+    pregunta por pregunta su respuesta detectada frente a la respuesta buena.
+  - En la ventana de comparacion, "Hoja vs clave" muestra la hoja marcada del
+    estudiante y una representacion de la clave correcta.
+  - Exportacion a CSV compatible con Excel, SIN la columna Nombre basada en PDF.
+    Ahora tiene las columnas Grupo y N.o de lista, independientes.
+  - Detecta automáticamente si la hoja impresa es de grado 10 o de grado 11,
+    tanto en la sesión 1 como en la sesión 2.
+  - Orden predeterminado de resultados y exportación: grupo ascendente
+    (10-1, 10-2, 10-3...) y número de lista ascendente (1, 2, 3...).
+  - El CSV protege el grupo como texto para que Excel no convierta 10-1
+    en una fecha al abrirlo.
+  - Los datos no detectados quedan vacios; no se inventa el grupo o numero.
+  - Se exportan las filas que dejan visibles los filtros actuales.
+  - La logica original de lectura y puntuacion permanece sin cambios.
+
+AVISO IMPORTANTE
+  El programa crea CSV (texto separado por ;), NO un archivo .xlsx nativo.
+  Si cambias la clave de respuestas tras calificar un lote, debes recalificar
+  para obtener nuevos resultados. Las correcciones de clave no se guardan en
+  el PDF de la clave original.
+
+CONTEXTO COMPLETO
+  Consulta CONTEXTO_CALIFICADOR_SIMULACROS.md para arquitectura, funciones,
+  detalles de las sesiones, cambios implementados, pruebas y limitaciones.
